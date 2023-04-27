@@ -15,16 +15,14 @@
 #include "concrete.h"
 
 
-float* displacement(float* a, float* b) {
-	float* delta = (float*) malloc(3 * sizeof(float));
+void displacement(float* delta, float* a, float* b) {
 	delta[0] = b[0] - a[0];
 	delta[1] = b[1] - a[1];
 	delta[2] = b[2] - a[2];
-	return delta;
 }
 
 float length(float* a) {
-	return sqrt(pow(a[0], 2) + pow(a[0], 2) + pow(a[0], 2));
+	return sqrt(pow(a[0], 2) + pow(a[1], 2) + pow(a[2], 2));
 }
 
 void vector3(float* vec, float x, float y, float z) {
@@ -74,17 +72,17 @@ void print_particles(struct particle* particles, int N) {
 
 void accelerate_particles(struct particle* particles, float M, int N) {
 	for (int i = 0; i < N; i++) for (int j = 0; j < N; j++) if (i != j) {
-		float* delta = displacement(particles[i].position, particles[j].position);
+		float delta[3] = { 0, 0, 0 };
+
+		displacement(delta, particles[i].position, particles[j].position);
 		float dist = length(delta);
 		
 		if (dist <= 2 * R) {
-			float fn = hertz_mindlin(2 * R - dist) / M;
+			float an = hertz_mindlin(2 * R - dist) / M;
 
-			printf("%lf\n", fn*DELTA);
-
-			particles[i].acceleration[0] = -fn * (delta[0] / dist);
-			particles[i].acceleration[1] = -fn * (delta[1] / dist);
-			particles[i].acceleration[2] = -fn * (delta[2] / dist);
+			particles[i].acceleration[0] = -an * (delta[0] / dist);
+			particles[i].acceleration[1] = -an * (delta[1] / dist);
+			particles[i].acceleration[2] = -an * (delta[2] / dist);
 		}
 		
 		// particles[i].acceleration[2] -= G;

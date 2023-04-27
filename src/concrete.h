@@ -10,10 +10,10 @@
 #ifndef _CONCRETE_H
 #define _CONCRETE_H
 
-#define DELTA	1E-6
-#define SPEED	1
+#define DELTA	1E-6	// s
+#define SPEED	1		// m/s
 
-#define R	200E-6		// m²
+#define R	1E-2		// m²
 #define G	9.81		// m/s²
 #define PHO	2600		// kg/m³
 #define K	1E5			// ?
@@ -39,7 +39,7 @@ struct box {
 
 
 // Maths utils
-float* displacement(float* a, float* b);
+void displacement(float* delta, float* a, float* b);
 float length(float* a);
 void vector3(float* vec, float x, float y, float z);
 

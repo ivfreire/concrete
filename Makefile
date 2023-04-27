@@ -2,7 +2,7 @@ GCC		= gcc
 
 INPUT	= src/main.c src/concrete.c
 
-LIBS	= -lm -pthread
+LIBS	= -lm -pthread -lSDL2main -lSDL2
 
 OUTPUT	= concrete
 

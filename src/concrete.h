@@ -13,12 +13,10 @@
 #define DELTA	1E-6
 #define SPEED	1
 
-#define R	1E-2
-
-// Physical constants
-#define G	9.81	// [  m/s² ]
-#define PHO	2600	// [ kg/m³ ]
-#define K	1E5		// [   ?   ]
+#define R	200E-6		// m²
+#define G	9.81		// m/s²
+#define PHO	2600		// kg/m³
+#define K	1E5			// ?
 
 // Particle's parameters
 struct particle {

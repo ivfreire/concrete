@@ -79,7 +79,9 @@ void accelerate_particles(struct particle* particles, float M, int N) {
 		
 		if (dist <= 2 * R) {
 			float fn = hertz_mindlin(2 * R - dist) / M;
-			
+
+			printf("%lf\n", fn*DELTA);
+
 			particles[i].acceleration[0] = -fn * (delta[0] / dist);
 			particles[i].acceleration[1] = -fn * (delta[1] / dist);
 			particles[i].acceleration[2] = -fn * (delta[2] / dist);
